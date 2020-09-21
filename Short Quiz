@@ -1,0 +1,98 @@
+# variable constant for while loop
+p = 1
+
+#definitons for final count
+incorrect = [] #array for incorrect question numbers
+r = 0 #counter for right answers
+
+#start of script
+puts "Hello, What's your name?" 
+name = gets
+puts "Lovely to meet you, #{name.strip}. Let's do a quiz on the Tudors! \n \n"
+puts "Ok, so I am going to ask you some questions, and you pick the letter for the answer you think is correct! At the end, we can see how many answers you got right! Can you get all of them right? Let's see! \n"
+
+sleep 2
+while(p>0)
+
+  #Question 1
+  puts "\n Question 1: How many crowned Tudor Monarchs were there in total? \n 
+  a: 2
+  b: 3
+  c: 5
+  d: 6"
+  answer1 = gets.chomp
+  if answer1 == "c"
+  r +=1 # adds one to right answer counter
+  else incorrect << 1 # adds question number to incorrect answer array
+  end
+  # Question 2
+  puts "Question 2: Which of these was NOT a Tudor Monarch? \n 
+  a: Henry VII
+  b: Mary II
+  c: Henry VIII
+  d: Elizabeth I"
+  answer2 = gets.chomp 
+  if answer2 == "b"
+    r +=1 # adds one to right answer counter
+  else incorrect << 2 # adds question number to incorrect answer array
+  end
+
+  # Question 3
+  puts "Question 3: How old was Edward VII when he became king? \n 
+  a: 22
+  b: 25
+  c: 9
+  d: 17"
+  answer3 = gets.chomp 
+  if answer3 == "c"
+    r +=1 # adds one to right answer counter
+  else incorrect << 3 # adds question number to incorrect answer array
+  end
+
+  # Question 4
+  puts "Question 4: Henry the 8th had 6 wives, but which of his wives died last? \n 
+  a: Anne of Cleves
+  b: Katherine of Aragon
+  c: Jane Seymour
+  d: Katherine Parr"
+  answer4 = gets.chomp 
+  if answer4 == "a"
+    r +=1 # adds one to right answer counter
+  else incorrect << 4 # adds question number to incorrect answer array
+  end
+
+  # Question 5
+  puts "Question 5: How long (roughly) did the Tudor family's reign last? \n 
+  a: 90 years
+  b: 75 years
+  c: 150 years
+  d: 120 years"
+  answer5 = gets.chomp 
+  if answer5 == "d"
+    r +=1 # adds one to right answer counter
+  else incorrect << 5 # adds question number to incorrect answer array
+  end
+
+  # Tally of score
+  puts "And that concludes today's quiz. Take a look at your results below! \n"
+  puts "Name: #{name}"
+  puts "Correct answers = #{r} out of 5 \n"
+  puts "Questions answered incorrectly:"
+  puts incorrect.inspect
+
+  # Final comment on score
+  if r == "0"
+    puts " \n \n Better luck next time!"
+  else
+    puts "\n \n You got #{(100*r)/5}% correct! Well done!" 
+  end
+  puts "do you want to play again? (yes/no)"
+  again = gets.chomp
+  again.downcase
+  if again == "yes"
+    p=1
+  else p=0
+  end
+end
+
+puts "Come back soon!"
