@@ -1,0 +1,54 @@
+#method for calculating determinant
+def D(a,b,c)
+  b*b -(4*a*c)
+end
+
+#quadratic formula with positive variable sign
+def pformula(a,b,c)
+ (- b + (Math.sqrt(D(a,b,c))))/(2*a)
+end
+#quadratic formula with negative variable sign
+def nformula(a,b,c)
+ (- b - (Math.sqrt(D(a,b,c))))/(2*a)
+end
+
+#for while loop
+x=1
+
+# start of script
+puts "This programme can calculate the roots of a quadratic equation. To use it, you must first declare your constants for the generic quadratic equation; \n
+
+\t\t  ax^2 + bx + c = 0 \n
+
+Note: This programme only works for solutions with real values. \n \n"
+
+#while loop to ensure constant 'a' is non-zero.
+puts"For your equation;"
+while(x>0)
+  puts"What is your value for a?"
+  a = gets.chomp
+  if a == "0"
+    puts "you cannot have a = 0, because this would not be a quadratic equation. Try inputting another number."
+  else x=0
+  end
+  a= a.to_f #change to float for calculation
+end
+
+puts "Ok, and what is your value for the constant b?"
+b = gets.chomp
+b = b.to_f # change to float for calculation
+puts "Great! Finally, your value for c?"
+c = gets.chomp
+c = c.to_f # change to float for calculation
+puts" So, your quadratic equation is; \n
+\t  #{a}x^2 + #{b}x + #{c} = 0"
+
+#if the determinant is negative, the solution would contain complex numbers.
+if D(a,b,c) < 0
+  puts"It looks like your equation has complex roots. Please try again with other constants."
+else
+  puts "The roots of the above equation are
+
+  x1 = #{pformula(a, b, c)}
+  x2 = #{nformula(a, b, c)}"
+end
