@@ -107,7 +107,6 @@ while x == 0;
     end
     
       #if word is complete, end loop
-      #check words with I in them
     if correct.sort.size() ==    hang_unique.sort.size();
       a = 1
     elsif lives == 0;
