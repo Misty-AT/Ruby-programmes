@@ -1,0 +1,135 @@
+#word choices array
+word = ['indigo', 'aubergine', 'elephant','ytterbium', 'sunshine', "translator", "megaphone", "Dalmatian"]
+
+#alphabet
+alphabet = ['a', 'b', 'c', 'd', 'e','f','g','h', 'i', 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+#incorrect letters
+incorrect = []
+
+#correct letters - will be replaced with dashes with filled letters
+correct = []
+
+#initialise lives
+lives = 0
+
+#rematch while loop
+x = 0
+
+#game while loop
+a = 0
+
+
+
+#--------------------------
+#Intro to start
+puts "Hello, do you want to play hangman? (yes/no)"
+answer = gets.chomp
+answer.upcase
+if answer == "no"
+  puts "Ok, until next time!"
+  begin
+    exit
+  end
+else 
+  puts "Come on then, one game? Let's go! \n"
+end
+
+#loop for rematch
+while x == 0;
+
+  #choose difficulty
+  puts "Do you want an easy, medium or hard game? (easy/medium/hard)"
+
+  difficulty = gets.chomp
+  difficulty.downcase
+
+  if difficulty == "hard"
+    lives = 5
+  elsif difficulty == "medium"
+    lives = 7
+  else difficulty == "easy"
+    lives = 10
+  end
+
+  puts "Ok! You have #{lives} lives and your word is... \n"
+  #choose word and split into array
+  hangman = word.sample
+  hang_array = hangman.split("")
+
+  #Removing duplicate letters from words
+  hang_unique = hang_array.uniq
+
+  #print marks for each letter of word
+  hang_array.each do |x|  
+    print "_ "
+  end
+
+
+
+  # Game
+  while a == 0;
+
+
+    #Letters not used
+    puts "\n \n Your available letters:"
+    print alphabet.inspect
+
+    #Incorrect letters
+    puts"\n \n incorrect letters:"
+    print incorrect.inspect
+
+    #correct letters
+    puts "\n \n correct letters:"
+    print correct.inspect
+
+    #Remaining lives
+    puts "\n \n Lives remaining #{lives}"
+
+    #Choose a letter
+    puts "\n \n Choose a letter:"
+    letter = gets.chomp
+    letter = letter.downcase
+
+
+    if alphabet.include?(letter) && hang_unique.include?(letter)
+      puts "This letter is in the word"
+      alphabet.delete(letter)
+      correct.push(letter)
+    elsif alphabet.include?(letter);
+      puts "This letter is not in the word"
+      alphabet.delete(letter)
+      incorrect.push(letter)
+      lives -= 1
+    else ;
+      puts "Sorry, I don't understand that. Try again"
+    end
+    
+      #if word is complete, end loop
+    if correct.sort.size() ==    hang_unique.sort.size();
+      a = 1
+    elsif lives == 0;
+      a = 2;
+    else;
+      "\n"
+    end
+    
+    
+  end
+
+  if a == 1;
+    puts "Congrats, you won!"
+  else;
+  puts "Oops, better luck next time! \n Your word was... #{hangman}!!"
+  
+  end
+
+  puts "One more game?"
+  rematch = gets.chomp
+  if rematch == "yes";
+    x = 0
+  else;
+    x = 1;
+    puts "Ok, see you soon!"
+  end
+end
